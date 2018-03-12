@@ -9,10 +9,13 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  // View,
+  View,
   WebView,
 } from 'react-native';
 import Exponent, { Constants, ImagePicker, registerRootComponent, LinearGradient } from 'expo';
+
+import { Radar } from 'react-native-pathjs-charts';
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -127,19 +130,65 @@ class HomeScreen extends React.Component {
   // Called after the component was rendered and it was attached to the DOM.
   // This is a good place to make AJAX requests or setTimeout.
   // ------------------------------------------------------
+  // render() {
+  //   return( 
+  //   <View style = {{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+  //     <View style={styles.container}>
+  //       <LinearGradient colors={['#5161B9', '#9C69CC']} style={{ position: 'absolute', height: 900, width: 400 }} />
+  //       <TouchableOpacity onPress={this._takePhoto}>
+  //           <Text style={{ fontSize: 20, color: 'white' }}>TAP TO BEGIN</Text>
+  //           <Image style={{ width: 150, height: 150 }} source={{ uri: 'https://78.media.tumblr.com/48a0d13c52b402e976bc5d4416552671/tumblr_onew3c4x8a1vxu8n6o1_500.gif' }} />
+  //       </TouchableOpacity>
+  //     </View>
+  //   </View >
+  //   );  
+  // }
+
   render() {
-    return( 
-    <View style = {{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <View style={styles.container}>
-        <LinearGradient colors={['#5161B9', '#9C69CC']} style={{ position: 'absolute', height: 900, width: 400 }} />
-        <TouchableOpacity onPress={this._takePhoto}>
-            <Text style={{ fontSize: 20, color: 'white' }}>TAP TO BEGIN</Text>
-            <Image style={{ width: 150, height: 150 }} source={{ uri: 'https://78.media.tumblr.com/48a0d13c52b402e976bc5d4416552671/tumblr_onew3c4x8a1vxu8n6o1_500.gif' }} />
-        </TouchableOpacity>
+    let data = [{
+      "speed": 74,
+      "balance": 29,
+      "explosives": 40,
+      "energy": 40,
+      "flexibility": 30,
+      "agility": 25,
+      "endurance": 44
+    }]
+  
+    let options = {
+      width: 290,
+      height: 290,
+      margin: {
+        top: 20,
+        left: 20,
+        right: 30,
+        bottom: 20
+      },
+      r: 150,
+      max: 100,
+      fill: "#2980B9",
+      stroke: "#2980B9",
+      animate: {
+        type: 'oneByOne',
+        duration: 200
+      },
+      label: {
+        fontFamily: 'Arial',
+        fontSize: 14,
+        fontWeight: true,
+        fill: '#34495E'
+      }
+    }
+  
+    return (
+      <View>
+        <Radar data={data} options={options} />
       </View>
-    </View >
-    );  
+    )
   }
+
+
+
 }
 // TODO: Create components and put methods in accordingly
 // ------------------------------------------------------
