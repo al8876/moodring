@@ -14,7 +14,10 @@ import {
 } from 'react-native';
 import Exponent, { Constants, ImagePicker, registerRootComponent, LinearGradient } from 'expo';
 
-import { Radar } from 'react-native-pathjs-charts';
+// RADAR CHART
+
+import Radar from 'react-d3-radar';
+
 
 export default class App extends React.Component {
   constructor(props) {
@@ -144,50 +147,62 @@ class HomeScreen extends React.Component {
   //   );  
   // }
 
-  render() {
-    let data = [{
-      "speed": 74,
-      "balance": 29,
-      "explosives": 40,
-      "energy": 40,
-      "flexibility": 30,
-      "agility": 25,
-      "endurance": 44
-    }]
-  
-    let options = {
-      width: 290,
-      height: 290,
-      margin: {
-        top: 20,
-        left: 20,
-        right: 30,
-        bottom: 20
-      },
-      r: 150,
-      max: 100,
-      fill: "#2980B9",
-      stroke: "#2980B9",
-      animate: {
-        type: 'oneByOne',
-        duration: 200
-      },
-      label: {
-        fontFamily: 'Arial',
-        fontSize: 14,
-        fontWeight: true,
-        fill: '#34495E'
-      }
+    render() {
+      return(
+        <View>
+        <Radar
+  width={500}
+  height={500}
+  padding={70}
+  domainMax={10}
+  highlighted={null}
+  onHover={(point) => {
+    if (point) {
+      console.log('hovered over a data point');
+    } else {
+      console.log('not over anything');
     }
-  
-    return (
-      <View>
-        <Radar data={data} options={options} />
-      </View>
-    )
-  }
-
-
+  }}
+  data={{
+    variables: [
+      {key: 'resilience', label: 'Resilience'},
+      {key: 'strength', label: 'Strength'},
+      {key: 'adaptability', label: 'Adaptability'},
+      {key: 'creativity', label: 'Creativity'},
+      {key: 'openness', label: 'Open to Change'},
+      {key: 'confidence', label: 'Confidence'},
+    ],
+    sets: [
+      {
+        key: 'me',
+        label: 'My Scores',
+        values: {
+          resilience: 4,
+          strength: 6,
+          adaptability: 7,
+          creativity: 2,
+          openness: 8,
+          confidence: 1,
+        },
+      },
+      {
+        key: 'everyone',
+        label: 'Everyone',
+        values: {
+          resilience: 10,
+          strength: 8,
+          adaptability: 6,
+          creativity: 4,
+          openness: 2,
+          confidence: 0,
+        },
+      },
+    ],
+  }}
+/>
+  </View>
+      )
+    }
 
 }
 // TODO: Create components and put methods in accordingly
