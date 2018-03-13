@@ -13,6 +13,7 @@ import {
   WebView,
 } from 'react-native';
 import Exponent, { Constants, ImagePicker, registerRootComponent, LinearGradient } from 'expo';
+import { PieChart } from 'react-native-svg-charts';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -138,19 +139,46 @@ class HomeScreen extends React.Component {
   // This is a good place to make AJAX requests or setTimeout.
   // ------------------------------------------------------
 
+  // render() {
+  //   return( 
+  //   <View style = {{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+  //     <View style={styles.container}>
+  //       <LinearGradient colors={['#5161B9', '#9C69CC']} style={{ position: 'absolute', height: 900, width: 400 }} />
+  //       <TouchableOpacity onPress={this._takePhoto}>
+  //           <Text style={{ fontSize: 20, color: 'white' }}>TAP TO BEGIN</Text>
+  //           <Image style={{ width: 150, height: 150 }} source={{ uri: 'https://78.media.tumblr.com/48a0d13c52b402e976bc5d4416552671/tumblr_onew3c4x8a1vxu8n6o1_500.gif' }} />
+  //       </TouchableOpacity>
+  //     </View>
+  //   </View >
+  //   );  
+  // }
+
   render() {
-    return( 
-    <View style = {{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <View style={styles.container}>
-        <LinearGradient colors={['#5161B9', '#9C69CC']} style={{ position: 'absolute', height: 900, width: 400 }} />
-        <TouchableOpacity onPress={this._takePhoto}>
-            <Text style={{ fontSize: 20, color: 'white' }}>TAP TO BEGIN</Text>
-            <Image style={{ width: 150, height: 150 }} source={{ uri: 'https://78.media.tumblr.com/48a0d13c52b402e976bc5d4416552671/tumblr_onew3c4x8a1vxu8n6o1_500.gif' }} />
-        </TouchableOpacity>
-      </View>
-    </View >
-    );  
-  }
+ 
+    const data = [ 50, 40, 20, 80 ]
+
+    const randomColor = () => ('#' + (Math.random() * 0xFFFFFF << 0).toString(16) + '000000').slice(0, 7)
+
+    const pieData = data
+        .filter(value => value > 0)
+        .map((value, index) => ({
+            value,
+            svg: {
+                fill: randomColor(),
+                onPress: () => console.log('press', index),
+            },
+            key: `pie-${index}`,
+        }))
+
+    return (
+        <PieChart
+            style={ { height: 200 } }
+            data={ pieData }
+        />
+    )
+}
+
+
 }
 
 
