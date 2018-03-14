@@ -71,17 +71,3 @@ export default class App extends React.Component {
     } else if (this.state.screen === 'RESULTS') {
       return (<Result {...this.state} setScreen={this.setScreen.bind(this)}/>)
     }
-
-  }
-}
-
-// ------------------------------------------------------
-// Styles should go in here - TODO: refactor as a component (maybe) do dry up code in components
-// ------------------------------------------------------
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

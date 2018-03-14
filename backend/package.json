@@ -1,5 +1,5 @@
 {
-  "name": "file-upload-example-backend",
+  "name": "moodring-backend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,7 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "aws-sdk": "^2.7.13",
+    "aws-sdk": "^2.208.0",
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
     "multer": "^1.2.0",
