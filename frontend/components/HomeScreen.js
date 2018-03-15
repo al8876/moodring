@@ -27,8 +27,8 @@ export default class HomeScreen extends React.Component {
       aspect: [4, 3],
     });
     this._handleImagePicked(pickerResult);
-    this.props.setScreen('ANALYZE');
-    console.log('Taking Photo');
+    this.props.setScreen('ANALYZE'); 
+    console.log('Taking Photo');     
   };
 
   _handleImagePicked = async pickerResult => {
@@ -89,6 +89,8 @@ export default class HomeScreen extends React.Component {
       console.log({ uploadResponse });
       console.log({ uploadResult });
       console.log({ e });
+      console.log('SETTING SCREEN STATE TO: ERROR')
+      this.props.setImageError(true);     
       alert('Upload failed, sorry :(');
     } finally {
       this.props.setUploading(false);

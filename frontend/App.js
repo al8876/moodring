@@ -18,6 +18,7 @@ import HomeScreen from './components/HomeScreen.js'
 import Analyze from './components/Analyze.js'
 import Playlist from './components/Playlist.js'
 import Result from './components/Result.js'
+import Error from './components/Error.js'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -30,6 +31,7 @@ export default class App extends React.Component {
       percentage: [],
       topEmotion: null,
       backgroundColor: ['#5161B9', '#9C69CC'],
+      imageError: false,
     };
   }
   
@@ -64,6 +66,10 @@ export default class App extends React.Component {
     this.setState({backgroundColor: array})
   }
 
+  setImageError(bool) {
+    this.setState({imageError: bool})
+  }
+
   // ------------------------------------------------------
   // render state
   // ------------------------------------------------------
@@ -80,7 +86,7 @@ export default class App extends React.Component {
     // STEP 2: ANALYZE SCREEN - Take picture using native camera
     // ------------------------------------------------------
     } else if (this.state.screen === 'ANALYZE') {
-      return (<Analyze {...this.state} setScreen={this.setScreen.bind(this)}/>)
+      return (<Analyze {...this.state} setScreen={this.setScreen.bind(this)} setImageError={this.setImageError.bind(this)}/>)
 
     // ------------------------------------------------------
     // STEP 3: SPOTIFY SCREEN - After picture was taken
@@ -88,8 +94,17 @@ export default class App extends React.Component {
     } else if (this.state.screen === 'PLAYLIST') {
       return (<Playlist {...this.state} setScreen={this.setScreen.bind(this)} />)
     
+    // ------------------------------------------------------
+    // STEP 4: MOOD RESULTS SCREEN - Shows mood statistics
+    // ------------------------------------------------------
     } else if (this.state.screen === 'RESULTS') {
       return (<Result {...this.state} setScreen={this.setScreen.bind(this)}/>)
+    
+    // ------------------------------------------------------
+    // STEP 5: ERROR SCREEN - If picture renders undefined
+    // ------------------------------------------------------    
+    } else if (this.state.screen === 'ERROR') {
+      return (<Error {...this.state} setScreen={this.setScreen.bind(this)}/>)
     }
 
   }

@@ -72,7 +72,13 @@ export default class Analyze extends React.Component {
   componentDidMount() {
     this.refs.circularProgress.performLinearAnimation(100, 8000);
     setTimeout(() => {
-      this.props.setScreen('PLAYLIST');
+      if (this.props.imageError === true) {
+        this.props.setScreen('ERROR');
+      } else {
+        this.props.setScreen('PLAYLIST');
+      }
+      console.log('PROPS FROM ANALYZE COMPONENT --------------------')
+      console.log(this.props)
     }, 8000);
   }
 }

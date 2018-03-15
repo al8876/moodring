@@ -31,9 +31,6 @@ export default class Playlist extends React.Component {
 
   render() {
 
-    console.log('THIS IS THE STATE FROM INSIDE PLAYLIST FOR BACKGROUND COLOUR');
-    console.log(this.props);
-
     return (
       <View style={styles.container}>
         
