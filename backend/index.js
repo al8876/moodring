@@ -8,6 +8,7 @@ const multer = require('multer')
 const multerS3 = require('multer-s3')
 
 const s3 = new aws.S3({
+
  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
  region: "us-west-2"
@@ -15,6 +16,7 @@ const s3 = new aws.S3({
 
 aws.config.update({
  region: 'us-west-2'
+
 });
 
 const rekognition = new aws.Rekognition();
@@ -44,13 +46,12 @@ const upload = multer({
 // Post to api url upload path
 // --------------------------------------------------------
 
- 
 app.post('/upload', upload.single('photo'), (req, res, next) => {
  res.json(req.file)
  console.log('Image has been uploaded')
 })
 
-app.get('/recognize', (req, res, next) => {
+app.get('/recognize/face', (req, res, next) => {
  
  const faceParams = {
    Image: {
@@ -64,25 +65,28 @@ app.get('/recognize', (req, res, next) => {
        error: err,
        data
    });
+
  });
-
- // const labelParams = {
- //   Image: {
- //     S3Object: {Bucket: process.env.AWS_BUCKET, Name: req.query.key}
- //   },
- // };
-
- // rekognition.detectLabels(labelParams, function(err, data) {
- //   res.json({
- //     error: err,
- //     data
- //   });
- // });
- 
 });
 
 
-// --------------------------------------------------------------
+app.get('/recognize/environment', (req, res, next) => {
+  const labelParams = {
+    Image: {
+      S3Object: {Bucket: process.env.AWS_BUCKET, Name: req.query.key}
+    },
+  };
+
+  rekognition.detectLabels(labelParams, function(err, data) {
+    res.json({
+      error: err,
+      data
+    });
+
+  });
+ });
+ 
+// Connect that shit ----------------------------------------------------
 
  let port = process.env.PORT || 3000;
 http.listen(port, () => {
