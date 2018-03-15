@@ -70,10 +70,6 @@ export default class App extends React.Component {
     this.setState({backgroundColor: array})
   }
 
-<<<<<<< HEAD
-  setImageError(bool) {
-    this.setState({imageError: bool})
-=======
   setLabels(array) {
     this.setState({labels: array})
   }
@@ -88,7 +84,6 @@ export default class App extends React.Component {
 
   setAge(num) {
     this.setState({age: num})
->>>>>>> master
   }
 
   // ------------------------------------------------------

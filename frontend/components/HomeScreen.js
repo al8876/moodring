@@ -29,16 +29,10 @@ export default class HomeScreen extends React.Component {
       allowsEditing: false,
       aspect: [4, 3],
     });
-<<<<<<< HEAD
-    this._handleImagePicked(pickerResult);
-    this.props.setScreen('ANALYZE'); 
-    console.log('Taking Photo');     
-=======
     this._handleFaceImage(pickerResult);
     this.props.setScreen('ANALYZE');
     this.props.setFace(true);
     console.log('Taking Photo');
->>>>>>> master
   };
 
   _handleFaceImage = async pickerResult => {
@@ -50,12 +44,7 @@ export default class HomeScreen extends React.Component {
         uploadResponse = await this.uploadImageAsync(pickerResult.uri);
 
         console.log(uploadResponse);
-<<<<<<< HEAD
-        recognizeResponse = await this.recognizeImageAsync(uploadResponse.key)
-
-=======
         recognizeResponse = await this.recognizeFaceImage(uploadResponse.key)
->>>>>>> master
           // console.log(JSON.stringify(recognizeResponse.data.FaceDetails[0].Emotions));         
         console.log(JSON.stringify(recognizeResponse, null, 2))
         
