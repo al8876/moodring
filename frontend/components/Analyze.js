@@ -52,6 +52,28 @@ export default class Analyze extends React.Component {
     }
   };
 
+  findPlaylist = async () => {
+    let spotifyResponse = await this.spotifyRequest();
+    let playlist = spotifyResponse.playlists.items[0].external_urls.spotify;
+    this.props.setPlaylist(playlist)
+
+  }
+
+  async spotifyRequest() {
+    console.log('THIS IS THE PROPS FROM INSIDE THE SPOTIFY REQUEST FUNCTION HERE!')
+    console.log(this.props)
+    let apiUrl = `https://api.spotify.com/v1/search?q=${this.props.emotions[0]}&type=playlist&limit=1`
+ 
+    let options = {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        Authorization: 'Bearer BQD7_0ihvo9jil3Gs9CsD1xq2BTJ_VjgxcqOlOOBwMiMUmPJPkyJfCWxOrHivERExtPW-b_e3P8NgzTt0CO3_hsE_o_dtkV_RK2KytuZEFaEf0lso_KkVF1XVXAj02e9ibKi3hZcDg',
+      }      
+    }
+    return fetch(apiUrl, options).then(result => result.json())
+  }
+
 
   render() {
     return (
@@ -71,6 +93,7 @@ export default class Analyze extends React.Component {
 
   componentDidMount() {
     this.refs.circularProgress.performLinearAnimation(100, 8000);
+    this.findPlaylist();
     setTimeout(() => {
       if (this.props.error) {
         this.props.setScreen('ERROR')
