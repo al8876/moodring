@@ -44,12 +44,18 @@ export default class Analyze extends React.Component {
     }
   };
 
+  forceUpdateHandler(){
+    console.log('THIS IS THE FORCE UPDATE HANDLERS');
+    console.log(this.props);
+    this.forceUpdate();
+  };
+
 
   render() {
     return (
       <View style={styles.container}>
         <LinearGradient colors={['#5161B9', '#9C69CC']} style={{ position: 'absolute', height: 900, width: 400 }} />
-        <TouchableOpacity>
+        <TouchableOpacity onPress={this.forceUpdateHandler}>
           {this._maybeRenderImage()}
         </TouchableOpacity>
       </View>
@@ -63,13 +69,21 @@ export default class Analyze extends React.Component {
 
   // COMENTED OUT FOR TESTING
   componentDidMount() {
+    console.log('--- PROPS PROPS PROP PROPS PROPS ---')
+    console.log(this.props)
     setTimeout(() => {
       if (this.props.error) {
         this.props.setScreen('ERROR')
+      } else if (this.props.emotions == []) {
+        console.log('THE EMOTIONS STATE IS A BLANK ARRAY ----- []')
+        console.log(this.props)
+        this.props.setScreen('ERROR')
       } else {
+        console.log('!!!!!  --- PROPS FROM WITHING THE ELSE FUNCTION OF COMPONENT DID MOUNT ----------- !!!!!')
+        console.log(this.props)
         this.props.setScreen('PLAYLIST');
       }
-    }, 8000);
+    }, 2000);
   }
     // if (this.props.error) {
     //   this.props.setScreen('ERROR')
