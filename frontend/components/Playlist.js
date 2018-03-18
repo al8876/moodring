@@ -44,6 +44,15 @@ export default class Playlist extends React.Component {
     this.props.setScreen('RESULTS')
   };
 
+  onShouldStartLoadWithRequest(navigator) {
+    // if (navigator.url.indexOf(INTERCEPT_URL) === -1) {
+    //     return true;
+    // } else {
+        this.refs[WEBVIEW_REF].stopLoading();
+    //     return false;
+    // }    
+}
+
   render() {
     console.log('-------- THIS IS THE PROPS FROM PLAYLIST -------- ')
     console.log(this.props)
@@ -55,7 +64,7 @@ export default class Playlist extends React.Component {
 
         <Text style={{ marginTop: 30, color: 'white', fontSize: 20, padding: 10 }}>YOUR CUSTOM PLAYLIST</Text>
 
-        <WebView source={{ uri: this.props.playlist }} style={{ marginTop: 20, marginBottom: 30, height: 380, width: 300 }} />
+        <WebView source={{ uri: this.props.playlist }} style={{ marginTop: 20, marginBottom: 30, height: 380, width: 300 }} onNavigationStateChange={this.onShouldStartLoadWithRequest} />
 
         <TouchableOpacity onPress={this._showResults} style={{ paddingBottom: 20 }}>
           <Text style={styles.moodResultButton}>MOOD RESULTS</Text>
