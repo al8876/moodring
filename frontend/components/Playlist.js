@@ -51,7 +51,7 @@ export default class Playlist extends React.Component {
         this.refs[WEBVIEW_REF].stopLoading();
     //     return false;
     // }    
-}
+  }
 
   render() {
     console.log('-------- THIS IS THE PROPS FROM PLAYLIST -------- ')
