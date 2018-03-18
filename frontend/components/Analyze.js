@@ -44,8 +44,8 @@ export default class Analyze extends React.Component {
     }
   };
 
-  returnHome = () => {
-    console.log('RETURN HOME INVOKED')
+  refresh = () => {
+    console.log('REFRESH HOME INVOKED')
     console.log(this.props)
     this.forceUpdate();
     // this.props.setScreen('HOME')
@@ -78,7 +78,7 @@ export default class Analyze extends React.Component {
       } else if (this.props.spotifyReturn === false ) {
         console.log('THE EMOTIONS STATE IS A BLANK ARRAY ----- []');
         console.log(this.props);
-        this.returnHome();
+        this.refresh();
       } else {
         console.log('--- PROPS FROM WITHING THE ELSE FUNCTION OF COMPONENT DID MOUNT ----------');
         console.log(this.props);
