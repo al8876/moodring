@@ -44,10 +44,11 @@ export default class Analyze extends React.Component {
     }
   };
 
-  forceUpdateHandler(){
-    console.log('THIS IS THE FORCE UPDATE HANDLERS');
-    console.log(this.props);
+  returnHome = () => {
+    console.log('RETURN HOME INVOKED')
+    console.log(this.props)
     this.forceUpdate();
+    // this.props.setScreen('HOME')
   };
 
 
@@ -55,7 +56,7 @@ export default class Analyze extends React.Component {
     return (
       <View style={styles.container}>
         <LinearGradient colors={['#5161B9', '#9C69CC']} style={{ position: 'absolute', height: 900, width: 400 }} />
-        <TouchableOpacity onPress={this.forceUpdateHandler}>
+        <TouchableOpacity onPress={this.returnHome}>
           {this._maybeRenderImage()}
         </TouchableOpacity>
       </View>
@@ -73,23 +74,27 @@ export default class Analyze extends React.Component {
     console.log(this.props)
     setTimeout(() => {
       if (this.props.error) {
-        this.props.setScreen('ERROR')
-      } else if (this.props.emotions == []) {
-        console.log('THE EMOTIONS STATE IS A BLANK ARRAY ----- []')
-        console.log(this.props)
-        this.props.setScreen('ERROR')
+        this.props.setScreen('ERROR');
+      } else if (this.props.spotifyReturn === false ) {
+        console.log('THE EMOTIONS STATE IS A BLANK ARRAY ----- []');
+        console.log(this.props);
+        this.returnHome();
       } else {
-        console.log('!!!!!  --- PROPS FROM WITHING THE ELSE FUNCTION OF COMPONENT DID MOUNT ----------- !!!!!')
-        console.log(this.props)
+        console.log('--- PROPS FROM WITHING THE ELSE FUNCTION OF COMPONENT DID MOUNT ----------');
+        console.log(this.props);
         this.props.setScreen('PLAYLIST');
       }
-    }, 2000);
+    }, 1000);
   }
-    // if (this.props.error) {
-    //   this.props.setScreen('ERROR')
-    // } else {
-    //   this.props.setScreen('PLAYLIST');
-    // }
+  //   // if (this.props.error) {
+  //   //   this.props.setScreen('ERROR')
+  //   // } else {
+  //   //   this.props.setScreen('PLAYLIST');
+  //   // }
+
+  componentWillReceiveProps() {
+
+  }
 
   }
 

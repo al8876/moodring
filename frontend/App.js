@@ -38,6 +38,7 @@ export default class App extends React.Component {
       backgroundColor: ['#5161B9', '#9C69CC'],
       error: false,
       playlist: null,
+      spotifyReturn: false,
     };
   }
   
@@ -96,6 +97,10 @@ export default class App extends React.Component {
     this.setState({token: string});
   }
 
+  setSpotifyReturn(bool) {
+    this.setState({spotifyReturn: bool});
+  }
+
   // ------------------------------------------------------
   // render state
   // ------------------------------------------------------
@@ -114,7 +119,7 @@ export default class App extends React.Component {
     // STEP 1: HOME SCREEN - Take picture using native camera
     // ------------------------------------------------------
     } else if (this.state.screen === 'HOME') {
-        return (<HomeScreen {...this.state} setScreen={this.setScreen.bind(this)} setUploading={this.setUploading.bind(this)} setImage={this.setImage.bind(this)} setEmotionList={this.setEmotionList.bind(this)} setEmotionPercentage={this.setEmotionPercentage.bind(this)} setBackgroundColor={this.setBackgroundColor.bind(this)} setLabels={this.setLabels.bind(this)} setLabelsPercentage={this.setLabelsPercentage.bind(this)} setFace={this.setFace.bind(this)} setAge={this.setAge.bind(this)} setError={this.setError.bind(this)} setPlaylist={this.setPlaylist.bind(this)}/>)
+        return (<HomeScreen {...this.state} setScreen={this.setScreen.bind(this)} setUploading={this.setUploading.bind(this)} setImage={this.setImage.bind(this)} setEmotionList={this.setEmotionList.bind(this)} setEmotionPercentage={this.setEmotionPercentage.bind(this)} setBackgroundColor={this.setBackgroundColor.bind(this)} setLabels={this.setLabels.bind(this)} setLabelsPercentage={this.setLabelsPercentage.bind(this)} setFace={this.setFace.bind(this)} setAge={this.setAge.bind(this)} setError={this.setError.bind(this)} setPlaylist={this.setPlaylist.bind(this)} setSpotifyReturn={this.setSpotifyReturn.bind(this)}/>)
 
     // ------------------------------------------------------
     // STEP 2: ANALYZE SCREEN - Take picture using native camera

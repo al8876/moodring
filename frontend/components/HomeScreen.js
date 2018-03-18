@@ -23,6 +23,8 @@ export default class HomeScreen extends React.Component {
   // FACE EMOTION PHOTO
 
   _takeFacePhoto = async () => {
+    this.props.setSpotifyReturn(false);
+    this.props.setEmotionList(false);
     this.props.setError(false);
     this.props.setImage(null);
     let pickerResult = await ImagePicker.launchCameraAsync({
@@ -226,6 +228,9 @@ export default class HomeScreen extends React.Component {
     console.log('THIS IS THE RANDOM NUMBER FROM INSIDE SPOTIFY PLAYLIST REQUEST: ' + randomNum)
     
     let apiUrl = `https://api.spotify.com/v1/search?q=${emotion}&type=playlist&offset=${randomNum}&limit=1`
+
+    // DEBUG ANALYZE PAGE
+    this.props.setSpotifyReturn(true);
  
     let options = {
       method: 'GET',
