@@ -37,7 +37,8 @@ export default class Analyze extends React.Component {
           </View>
           <View style={styles.imageContainer}>
             <Image source={{ uri: image }} style={styles.image} />
-            <Animatable.Text animation="fadeIn" easing="ease-in-out" iterationCount="infinite" direction='alternate' duration={3000} style={styles.systemMessage}>ANLYZING PICTURE</Animatable.Text>
+            <Animatable.Image animation="fadeIn" easing="ease-in-out" iterationCount="infinite" direction='alternate' duration={2000} style={{width: 170, height: 20, marginTop: 30}} source={AnalyzingText} />
+            {/* <Animatable.Text animation="fadeIn" easing="ease-in-out" iterationCount="infinite" direction='alternate' duration={3000} style={styles.systemMessage}>ANLYZING PICTURE</Animatable.Text> */}
           </View>
         </View>
       );
@@ -49,9 +50,9 @@ export default class Analyze extends React.Component {
     return (
       <View style={styles.container}>
         <Image source={Background} style={{ position: 'absolute', height: Dimensions.get('window').height, width: Dimensions.get('window').width}}/>
-        <TouchableOpacity>
+        <View style={{top: 0}}>
           {this._maybeRenderImage()}
-        </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -87,14 +88,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   systemMessage: {
-    color: 'white',
-    fontSize: 20,
-    paddingVertical: 30,
-    paddingHorizontal: 30,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center'
+    // paddingVertical: 30,
+    // paddingHorizontal: 30,
+    // flexDirection: 'column',
+    // justifyContent: 'center',
+    // alignItems: 'center',
   },
   imageContainer: {
     borderRadius: 50,
