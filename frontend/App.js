@@ -17,8 +17,13 @@ import Exponent, { Constants, ImagePicker, registerRootComponent, LinearGradient
 import LoginScreen from './components/Login.js'
 import HomeScreen from './components/HomeScreen.js'
 import Analyze from './components/Analyze.js'
-import Playlist from './components/Playlist.js'
-import Result from './components/Result.js'
+// import Playlist from './components/Playlist.js'
+
+// TESTING PLAYLIST MODAL
+import Playlist from './components/PlaylistModal.js'
+
+// import Result from './components/Result.js'
+
 import Error from './components/Error.js'
 import Timeout from './components/Timeout.js'
 
@@ -29,7 +34,7 @@ export default class App extends React.Component {
       token: null,
       image: null,
       uploading: false,
-      screen: 'LOGIN',
+      screen: 'PLAYLIST',
       emotions: [],
       percentage: [],
       labels: [],
@@ -137,14 +142,18 @@ export default class App extends React.Component {
     // ------------------------------------------------------
     // STEP 4: RESULTS SCREEN - Displays results of the analysis
     // ------------------------------------------------------
-    } else if (this.state.screen === 'RESULTS') {
-      return (<Result {...this.state} setScreen={this.setScreen.bind(this)} setPreviousPage={this.setPreviousPage.bind(this)} />)
+
+    // COMMENTED OUT FOR MODAL TESTING
+    // } else if (this.state.screen === 'RESULTS') {
+    //   return (<Result {...this.state} setScreen={this.setScreen.bind(this)} setPreviousPage={this.setPreviousPage.bind(this)} />)
 
     // ------------------------------------------------------
     // STEP 5: ERROR SCREEN - If image error occurs
     // ------------------------------------------------------
     } else if (this.state.screen === 'ERROR') {
       return (<Error {...this.state} setScreen={this.setScreen.bind(this)}/>)
+
+
     } else if (this.state.screen === 'TIMEOUT') {
       return (<Timeout {...this.state} setScreen={this.setScreen.bind(this)}/>)
     }
