@@ -1,56 +1,51 @@
 import React from 'react';
 import {
   ActivityIndicator,
-  Button,
-  Clipboard,
   Image,
   StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
+  Dimensions,
 } from 'react-native';
-import Exponent, { Constants, registerRootComponent, LinearGradient } from 'expo';
+import Exponent, { Constants, registerRootComponent } from 'expo';
 import * as Progress from 'react-native-progress';
 import * as Animatable from 'react-native-animatable';
 
+import Background from '../assets/analyzeBackground.gif';
+import AnalyzingText from '../assets/analyzingText.png';
+
+const { width, height } = Dimensions.get('window');
 
 export default class Analyze extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  _maybeRenderImage = () => {
-
+  render() {
     let { image } = this.props;
-    let analyzeText = 'ANLYZING PICTURE';
     if (!image) {
       this.setScreen('ERROR');
     } else {
       return (
-        <View>
-          <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', alignSelf: 'center', position: 'absolute', zIndex: 100 }}>
-              <Progress.CircleSnail color={['#1FBAEB']} size={170} thickness={5} />
-          </View>
-          <View style={styles.imageContainer}>
-            <Image source={{ uri: image }} style={styles.image} />
-            <Animatable.Text animation="fadeIn" easing="ease-in-out" iterationCount="infinite" direction='alternate' duration={3000} style={styles.systemMessage}>{analyzeText}</Animatable.Text>
-          </View>
+        <View style={styles.container}>
+          <Image source={Background} style={{ position: 'absolute', height: height, width: width }}/>
+          <TouchableOpacity style={{marginTop: 75}}>
+
+            <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', alignSelf: 'center', position: 'absolute', zIndex: 100 }}>
+                <Progress.CircleSnail color={['#1FBAEB']} size={170} thickness={5} />
+            </View>
+            
+            <View style={styles.imageContainer}>
+              <Image source={{ uri: image }} style={styles.image} />
+              <Animatable.Image animation="fadeIn" easing="ease-in-out" iterationCount="infinite" direction='alternate' duration={2000} style={styles.systemMessage} source={AnalyzingText} />            
+            </View>
+
+          </TouchableOpacity>
         </View>
       );
     }
-  };
-
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <LinearGradient colors={['#5161B9', '#9C69CC']} style={{ position: 'absolute', height: 900, width: 400 }} />
-        <TouchableOpacity>
-          {this._maybeRenderImage()}
-        </TouchableOpacity>
-      </View>
-    );
   }
 
   // ------------------------------------------------------
@@ -73,12 +68,6 @@ export default class Analyze extends React.Component {
         console.log('ANALYZE PASS - RENDERING PLAYLIST PAGE')
       }
     }, 8000);
-
-    // RENDER "CREATING PLAYLIST" TEXT
-    // setTimeout(() => {
-    //   let analyzeText = 'FINDING PLAYLIST'
-    // }, 4000);
-
   }
 
   }
@@ -87,17 +76,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
   },
   systemMessage: {
-    color: 'white',
-    fontSize: 20,
-    paddingVertical: 30,
-    paddingHorizontal: 30,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center'
+    width: 170,
+    height: 20,
+    marginTop: 30,
   },
   imageContainer: {
     borderRadius: 50,

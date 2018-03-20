@@ -1,18 +1,15 @@
 import React from 'react';
 import {
   ActivityIndicator,
-  Button,
   Clipboard,
   Image,
   Share,
   StatusBar,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
-  WebView,
 } from 'react-native';
-import Exponent, { Constants, ImagePicker, registerRootComponent, LinearGradient } from 'expo';
+import Exponent, { Constants, ImagePicker, registerRootComponent } from 'expo';
 
 import LoginScreen from './components/Login.js'
 import HomeScreen from './components/HomeScreen.js'
@@ -29,7 +26,7 @@ export default class App extends React.Component {
       token: null,
       image: null,
       uploading: false,
-      screen: 'LOGIN',
+      screen: 'HOME',
       emotions: [],
       percentage: [],
       labels: [],
