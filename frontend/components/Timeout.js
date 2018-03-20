@@ -14,6 +14,8 @@ import {
 } from 'react-native';
 import Exponent, { Constants, registerRootComponent, LinearGradient } from 'expo';
 import TimeOut from '../assets/timeout.png'
+import * as Animatable from 'react-native-animatable';
+
 
 
 export default class Timeout extends React.Component {
@@ -29,6 +31,7 @@ export default class Timeout extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+      <StatusBar hidden={true} />
         <Animatable.View animation="fadeIn" easing="ease-out" iterationCount={1} style={styles.container}>
           <LinearGradient colors={['#5161B9', '#9C69CC']} style={{ position: 'absolute', height: 900, width: 400 }} />
           <Image style={{ width: 280, height: 130 }} source={TimeOut}/>

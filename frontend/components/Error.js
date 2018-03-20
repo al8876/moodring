@@ -38,6 +38,7 @@ export default class Error extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <StatusBar hidden={true} />
         <LinearGradient colors={['#5161B9', '#9C69CC']} style={{ position: 'absolute', height: 900, width: 400 }} />
         <Animatable.View animation="fadeIn" easing="ease-out" iterationCount={1} style={styles.container}>
           <Image style={{ width: 250, height: 100 }} source={ErrorImage}/>

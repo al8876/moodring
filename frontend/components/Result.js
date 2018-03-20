@@ -121,6 +121,7 @@ export default class Playlist extends React.Component {
       _parsedData = () => {
         return (
         <View style={styles.container}>
+        <StatusBar hidden={true} />
 
           <View style={styles.chart}>
               <PieChart

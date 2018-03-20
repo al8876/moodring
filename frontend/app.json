@@ -3,7 +3,7 @@
     "name": "Moodring",
     "description": "Open Source App to analyze facial emotions and create spotify playlists based on emotions. Demonstration of how to upload images from the ImagePicker, using a node backend to upload to S3",
     "slug": "Moodring",
-    "sdkVersion": "20.0.0",
+    "sdkVersion": "25.0.0",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -11,6 +11,10 @@
     "packagerOpts": {
       "assetExts": ["ttf", "mp4"]
     },
+    "splash": {
+        "image": "./assets/splash-page.png",
+        "backgroundColor": "#000000"
+      },
     "ios": {
       "supportsTablet": true
     }

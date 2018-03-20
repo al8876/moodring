@@ -30,19 +30,20 @@ export default class Analyze extends React.Component {
     } else {
       return (
         <View style={styles.container}>
+          <StatusBar hidden={true} />
           <Image source={Background} style={{ position: 'absolute', height: height, width: width }}/>
-          <TouchableOpacity style={{marginTop: 75}}>
 
-            <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', alignSelf: 'center', position: 'absolute', zIndex: 100 }}>
-                <Progress.CircleSnail color={['#1FBAEB']} size={170} thickness={5} />
+          <View style={{marginTop: 75}}>
+            <View style={styles.progressCircle}>
+                <Progress.CircleSnail color={['#EC8D27']} size={170} thickness={5} />
             </View>
             
             <View style={styles.imageContainer}>
               <Image source={{ uri: image }} style={styles.image} />
               <Animatable.Image animation="fadeIn" easing="ease-in-out" iterationCount="infinite" direction='alternate' duration={2000} style={styles.systemMessage} source={AnalyzingText} />            
             </View>
+          </View>
 
-          </TouchableOpacity>
         </View>
       );
     }
@@ -67,7 +68,7 @@ export default class Analyze extends React.Component {
         this.props.setScreen('PLAYLIST');
         console.log('ANALYZE PASS - RENDERING PLAYLIST PAGE')
       }
-    }, 8000);
+    }, 8500);
   }
 
   }
@@ -77,13 +78,21 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
+  progressCircle: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    position: 'absolute',
+    zIndex: 100,
+  },
   systemMessage: {
     width: 170,
     height: 20,
     marginTop: 30,
   },
   imageContainer: {
-    borderRadius: 50,
     overflow: 'hidden',
     alignItems: 'center',
     justifyContent: 'center',
