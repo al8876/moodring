@@ -15,6 +15,8 @@ import {
   Animated,
 } from 'react-native';
 import Exponent, { Constants, ImagePicker, registerRootComponent, LinearGradient } from 'expo';
+import Feels from '../assets/feels.png';
+import Stuff from '../assets/stuff.png';
 
 export default class HomeScreen extends React.Component {
   constructor(props) {
@@ -250,12 +252,14 @@ export default class HomeScreen extends React.Component {
 
       <TouchableOpacity onPress={this._takeFacePhoto} style={styles.top}>
           <Image style={{ width: 150, height: 150 }} source={require('../assets/pacmanghost.gif')} />
-          <Text style={styles.homeText}>e m o t i o n a l</Text>                     
+          <Image style={ styles.feels } source={Feels} />
+
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={this._takeEnvironmentPhoto} style={styles.bottom}>        
+      <TouchableOpacity onPress={this._takeEnvironmentPhoto} style={styles.bottom}>
           <Image style={{ width: 140, height: 140 }} source={require('../assets/coin.gif')} />
-          <Text style={styles.homeText}>e n v i r o n m e n t a l</Text>
+          <Image style={ styles.stuff } source={Stuff} />
+
       </TouchableOpacity>
     </View >
     );
@@ -283,5 +287,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     paddingTop: 30,
     textAlign: 'center',
+  },
+  feels: {
+    marginTop: 40,
+  },
+  stuff: {
+    marginTop: 40,
   }
 });

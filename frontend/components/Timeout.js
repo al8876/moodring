@@ -4,6 +4,7 @@ import {
   Button,
   Clipboard,
   Image,
+  ImageBackground,
   Share,
   StatusBar,
   StyleSheet,
@@ -11,12 +12,16 @@ import {
   TouchableOpacity,
   View,
   WebView,
+  Dimensions
 } from 'react-native';
 import Exponent, { Constants, registerRootComponent, LinearGradient } from 'expo';
 import TimeOut from '../assets/timeout.png'
+import TimeOutGif from '../assets/timeout.gif'
+import TimeOutMessage from '../assets/timeout-message.png'
+import TimeOutButton from '../assets/timeoutbutton.png'
 import * as Animatable from 'react-native-animatable';
 
-
+const { width, height } = Dimensions.get('window');
 
 export default class Timeout extends React.Component {
   constructor(props) {
@@ -27,23 +32,22 @@ export default class Timeout extends React.Component {
     this.props.setScreen('HOME');
   };
 
-
   render() {
     return (
       <View style={styles.container}>
       <StatusBar hidden={true} />
-        <Animatable.View animation="fadeIn" easing="ease-out" iterationCount={1} style={styles.container}>
-          <LinearGradient colors={['#5161B9', '#9C69CC']} style={{ position: 'absolute', height: 900, width: 400 }} />
+        <Animatable.View animation="fadeIn" easing="ease-out" iterationCount={1}>
+          <ImageBackground style={{ alignItems: 'center', justifyContent: 'center', width, height }} source={TimeOutGif}>
           <Image style={{ width: 280, height: 130 }} source={TimeOut}/>
-          <Text style={{color: 'white', fontSize: 15, textAlign: 'center' }}>Uh Oh! Looks like your connection timed out! {"\n"}{"\n"} Try clearing your phones cache or restarting your phone!</Text>        
+          <Image style={ styles.timeOutMessage } source={TimeOutMessage}/>
           <TouchableOpacity onPress={this._returnHome} style={{paddingTop: 50}}>
-            <Text style={{color: 'white', fontSize: 20, borderWidth: 2, borderColor: 'white', paddingHorizontal: 20, paddingVertical: 10 }}>TAP HERE TO GO BACK</Text>
+          <Image style={ styles.timeOutButton } source={TimeOutButton}/>
           </TouchableOpacity>
+          </ImageBackground>
         </Animatable.View>
       </View>
     );
   }
-
 }
 
 const styles = StyleSheet.create({
@@ -52,4 +56,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  timeOutButton: {
+    height: 52,
+    width: 260,
+  },
+  timeOutMessage: {
+    marginTop: 40,
+  }
 });

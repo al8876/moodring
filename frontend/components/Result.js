@@ -15,6 +15,9 @@ import {
 import Exponent, { Constants, registerRootComponent, LinearGradient } from 'expo';
 import { PieChart } from 'react-native-svg-charts';
 
+// IMPORT TEXT PNG
+import ResultText from '../assets/resultsText.png'
+
 export default class Playlist extends React.Component {
   constructor(props) {
     super(props);
@@ -80,6 +83,7 @@ export default class Playlist extends React.Component {
       _parsedData = () => {
         return (
         <View style={styles.container}>
+          <StatusBar hidden={true} />          
 
           <View style={styles.chart}>
               <PieChart
@@ -121,7 +125,7 @@ export default class Playlist extends React.Component {
       _parsedData = () => {
         return (
         <View style={styles.container}>
-        <StatusBar hidden={true} />
+          <StatusBar hidden={true} />          
 
           <View style={styles.chart}>
               <PieChart
@@ -154,15 +158,12 @@ export default class Playlist extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-
+        <StatusBar hidden={true} />  
 
         <View >
-          <Text style={styles.title}>RESULTS</Text>
+          <Image source={ResultText} style={styles.resultText} />          
           {this._dataReturn()}
-          <Text>TAP TO CLOSE</Text>
         </View>
-
-
 
       </View>
     );
@@ -175,14 +176,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column',
   },
-  title: {
-    top: 30,
-    paddingHorizontal: 10,
-    paddingVertical: 10,
-    color: 'white',
+  resultText: {
+    height: 50,
+    width: 150,
     justifyContent: 'center',
-    textAlign: 'center',
-    fontSize: 30,
+    marginTop: 30,
   },
   chart: {
     marginTop: 40,
