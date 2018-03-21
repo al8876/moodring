@@ -17,6 +17,10 @@ import Exponent, { Constants, registerRootComponent, LinearGradient } from 'expo
 import * as Animatable from 'react-native-animatable';
 import ErrorImage from '../assets/error.png';
 
+import ErrorButton from '../assets/errorButton.png';
+
+import errorMessage from '../assets/errorMessage.png';
+
 
 export default class Error extends React.Component {
   constructor(props) {
@@ -39,13 +43,16 @@ export default class Error extends React.Component {
     return (
       <View style={styles.container}>
         <StatusBar hidden={true} />
-        <LinearGradient colors={['#5161B9', '#9C69CC']} style={{ position: 'absolute', height: 900, width: 400 }} />
+
         <Animatable.View animation="fadeIn" easing="ease-out" iterationCount={1} style={styles.container}>
+          
           <Image style={{ width: 250, height: 100 }} source={ErrorImage}/>
-          <Text style={{color: 'white', fontSize: 15 }}>Uh Oh! Looks like this picture doesn't work!</Text>
+          <Image style={ styles.errorMessage } source={errorMessage}/>
+          
           <TouchableOpacity onPress={this._returnHome} style={{paddingTop: 50}}>
-            <Text style={{color: 'white', fontSize: 20, borderWidth: 2, borderColor: 'white', paddingHorizontal: 20, paddingVertical: 10 }}>TAP HERE TO GO BACK</Text>
+            <Image style={styles.timeOutButton} source={ErrorButton}/>            
           </TouchableOpacity>
+
         </Animatable.View>
       </View>
     );
@@ -58,5 +65,15 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#9C69CC',
   },
+  timeOutButton: {
+    height: 52,
+    width: 260,
+  },
+  errorMessage: {
+    marginTop: 40,
+    width: 250,
+    height: 150,
+  }
 });

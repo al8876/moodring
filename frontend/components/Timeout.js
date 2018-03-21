@@ -37,12 +37,15 @@ export default class Timeout extends React.Component {
       <View style={styles.container}>
       <StatusBar hidden={true} />
         <Animatable.View animation="fadeIn" easing="ease-out" iterationCount={1}>
+          
           <ImageBackground style={{ alignItems: 'center', justifyContent: 'center', width, height }} source={TimeOutGif}>
           <Image style={{ width: 280, height: 130 }} source={TimeOut}/>
           <Image style={ styles.timeOutMessage } source={TimeOutMessage}/>
+          
           <TouchableOpacity onPress={this._returnHome} style={{paddingTop: 50}}>
-          <Image style={ styles.timeOutButton } source={TimeOutButton}/>
+            <Image style={styles.timeOutButton} source={TimeOutButton}/>
           </TouchableOpacity>
+
           </ImageBackground>
         </Animatable.View>
       </View>
