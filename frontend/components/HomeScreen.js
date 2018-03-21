@@ -32,6 +32,9 @@ export default class HomeScreen extends React.Component {
   // FACE EMOTION PHOTO
 
   _takeFacePhoto = async () => {
+    BackHandler.addEventListener('hardwareBackPress', () => {
+      return true;
+    });
     this.props.setError(false);
     this.props.setImage(null);
     let pickerResult = await ImagePicker.launchCameraAsync({
@@ -54,7 +57,6 @@ export default class HomeScreen extends React.Component {
 
         console.log(uploadResponse);
         recognizeResponse = await this.recognizeFaceImage(uploadResponse.key);
-          // console.log(JSON.stringify(recognizeResponse.data.FaceDetails[0].Emotions));
         console.log(JSON.stringify(recognizeResponse, null, 2));
 
         // AGE DATA
