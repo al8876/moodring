@@ -14,7 +14,6 @@ import {
   Dimensions
 } from 'react-native';
 import Exponent, { Constants, registerRootComponent, LinearGradient } from 'expo';
-// import { PieChart } from 'react-native-svg-charts';
 import resultsBackground from '../assets/results1.jpg';
 const { width, height } = Dimensions.get('window');
 
@@ -72,28 +71,10 @@ export default class Playlist extends React.Component {
       data.push(Math.round((this.props.percentage[1]/emotionTotal) * 100 ));
       data.push(Math.round((this.props.percentage[2]/emotionTotal) * 100 ));
 
-      // let pieData = data
-      //     .filter(value => value > 0)
-      //     .map((value, index) => ({
-      //         value,
-      //         svg: {
-      //             fill: randomColor(),
-      //             onPress: () => console.log('press', index),
-      //         },
-      //         key: `pie-${index}`,
-      //     }))
-
       _parsedData = () => {
         return (
         <View style={styles.container}>
           <StatusBar hidden={true} />          
-
-          {/* <View style={styles.chart}>
-              <PieChart
-              style={{ height: 125, width: 125 }}
-              data={ pieData }
-              />
-          </View> */}
 
           <Text style={styles.data}>
             {this.props.emotions[0]} - {data[0]}%{"\n"}{"\n"}
@@ -114,28 +95,10 @@ export default class Playlist extends React.Component {
         data.push(Math.round((label/labelTotal) * 100))
       });
 
-      // let pieData = data
-      //     .filter(value => value > 0)
-      //     .map((value, index) => ({
-      //         value,
-      //         svg: {
-      //             fill: randomColor(),
-      //             onPress: () => console.log('press', index),
-      //         },
-      //         key: `pie-${index}`,
-      //     }))
-
       _parsedData = () => {
         return (
         <View style={styles.container}>
           <StatusBar hidden={true} />          
-
-          {/* <View style={styles.chart}>
-              <PieChart
-              style={{ height: 125, width: 125 }}
-              data={ pieData }
-              />
-          </View> */}
 
                 {this.props.labels.slice(0, 5).map((value, index) => {
             return(
