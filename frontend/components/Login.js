@@ -36,7 +36,7 @@ export default class Login extends React.Component {
         <StatusBar hidden={true} />
         <Animatable.Image animation="zoomInDown" duration={5000} style={ styles.title } source={TitleImage} />
         <ImageBackground style={{ flex: 1, height: 360, width: 360, position: 'absolute', bottom: 0 }} source={OutRun} ></ImageBackground>
-        <Animatable.Image animation="fadeIn" delay={3500} duration={3000} style={styles.tap} onPress={this._openWebBrowserAsync} source={LoginSpotify} />
+        <Animatable.Image animation="fadeIn" iterationCount="infinite" direction='alternate' delay={3500} duration={1000} style={styles.tap} onPress={this._openWebBrowserAsync} source={LoginSpotify} />
         <TouchableOpacity onPress={this._openWebBrowserAsync} style={{ backgroundColor: 'white', width: width, height: height, opacity: 0 }} />
       </View>
     );
