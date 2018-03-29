@@ -26,7 +26,8 @@ const { width, height } = Dimensions.get('window');
 const stateKey = 'spotify_auth_state';
 const client_id = 'ec0f50a8fa1d4abc8a1740376f64ed97';
 const client_secret = '097ec13156344d21949b606291eba5be';
-let redirect_uri = AuthSession.getRedirectUrl();
+// let redirect_uri = AuthSession.getRedirectUrl();
+let redirect_uri = 'myapp://+';
 
 export default class Login extends React.Component {
   state = {
